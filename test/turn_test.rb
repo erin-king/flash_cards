@@ -12,29 +12,30 @@ class TurnTest < Minitest::Test
     assert_instance_of Turn, turn
   end
 
+  def test_it_has_attributes
+    card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
+    turn = Turn.new("Juneau", card)
+
+    assert_equal "Juneau", turn.guess
+    assert_equal card, turn.card
+  end
+
+  def test_it_can_detect_correct_and_incorrect_answers
+    card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
+    turn_1 = Turn.new("Juneau", card)
+    turn_2 = Turn.new("Utqiagvik", card)
+
+    assert turn_1.correct?
+    refute turn_2.correct?
+  end
+
+  def test_it_can_give_feedback
+    card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
+    turn_1 = Turn.new("Juneau", card)
+    turn_2 = Turn.new("Utqiagvik", card)
+
+    assert_equal "Correct!", turn_1.feedback
+    assert_equal "Incorrect.", turn_2.feedback
+  end
+
 end
-
-# turn = Turn.new("Utqiagvik", card)
-
-
-# correct? - This method returns a boolean indicating if the guess matched the answer on the Card.
-# feedback - This method either returns "Correct!" or "Incorrect." based on whether the guess was correct or not.
-# The Turn class should respond to the following interaction pattern:
-
-# pry(main)> card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-# #=> #<Card:0x00007f800e29f0c8 @question=""What is the capital of Alaska?", @answer="Juneau", @category=:Geography>
-#
-# pry(main)> turn = Turn.new("Juneau", card)
-# #=> #<Turn:0x00007f99842f0998 @card=#<Card:0x00007f800e29f0c9 @question=""What is the capital of Alaska?", @answer="Juneau", @guess="Juneau">
-#
-# pry(main)> turn.card
-# #=> #<Card:0x00007f800e29f0c8 @question=""What is the capital of Alaska?", @answer="Juneau", @category=:Geography>
-#
-# pry(main)> turn.guess
-# #=> "Juneau"
-#
-# pry(main)> turn.correct?
-# #=> true
-#
-# pry(main)> turn.feedback
-# #=> "Correct!"
