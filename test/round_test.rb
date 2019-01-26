@@ -120,9 +120,7 @@ class RoundTest < Minitest::Test
     newest_turn_incorrect = @round.take_turn("Incorrect")
 
     assert_equal 50.0, @round.percent_correct_by_category(:STEM)
+    assert_nil @round.current_card
   end
+  
 end
-
-
-# pry(main)> round.current_card
-# #=> #<Card:0x00007fa161a136f0 @answer="North north west", @question="Describe in words the exact direction that is 697.5° clockwise from due north?", @category=:STEM>
