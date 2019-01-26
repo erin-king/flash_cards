@@ -69,12 +69,8 @@ class Round
   def game_over
     puts "****** Game over! ******"
     puts "You had #{number_correct} correct guesses out of #{@turns.count} for a total score of #{percent_correct}%."
-    # new method to define cataegories
-    @deck.cards_in_category(category)
-
-    @deck.cards.each do |card|
-      category = card.category
-      puts "#{category}:  #{percent_correct_by_category(category)}% correct."
+    @deck.card_categories.each do |category|
+      puts "#{category}: #{percent_correct_by_category(category)}% correct."
     end
   end
 
