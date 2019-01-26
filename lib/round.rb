@@ -9,6 +9,7 @@ class Round
     @deck = deck
     @turns = []
     @current_card_index = 0
+    # @number_correct = 0
   end
 
   def current_card
@@ -20,6 +21,12 @@ class Round
     @turns << turn
     @current_card_index += 1
     turn
+  end
+
+  def number_correct
+    @turns.count do |turn|
+      turn.correct? == true
+    end
   end
 
 

@@ -59,35 +59,27 @@ class RoundTest < Minitest::Test
     newer_turn = @round.take_turn("Mars")
 
     assert_equal [new_turn, newer_turn], @round.turns
+    assert_equal 2, @round.turns.count
+
   end
 
+  def test_it_can_calculate_number_of_correct_answers
+    new_turn = @round.take_turn("Juneau")
 
+    assert_equal 1, @round.number_correct
 
+    newer_turn = @round.take_turn("Mars")
+
+    assert_equal 2, @round.number_correct
+
+    newest_turn_wrong_guess = @round.take_turn("I'm incorrect!")
+
+    assert_equal 2, @round.number_correct
+    assert_equal "Incorrect.", @round.turns.last.feedback
+  end
 
 end
 
-
-# pry(main)> round.turns
-# #=> [#<Turn:0x00007f99842f09e8 @card=#<Card:0x00007f800e29f0c9 @question=""What is the capital of Alaska?", @answer="Juneau", @category=:Geography>, @guess="Juneau">]
-#
-# pry(main)> round.number_correct
-# #=> 1
-#
-# pry(main)> round.current_card
-# #=> #<Card:0x00007fa160a62e90 @answer="Mars", @question="The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", @category=:STEM>
-#
-# pry(main)> round.take_turn("Venus")
-# #=> #<Turn:0x00007f972a215b38...>
-#
-# pry(main)> round.turns.count
-# #=> 2
-#
-# pry(main)> round.turns.last.feedback
-# #=> "Incorrect."
-#
-# pry(main)> round.number_correct
-# #=> 1
-#
 # pry(main)> round.number_correct_by_category(:Geography)
 # #=> 1
 #
