@@ -18,4 +18,12 @@ class Deck
     end
   end
 
+  def card_categories
+    categories = []
+    @cards.each do |card|
+      categories << card.category
+    end
+    categories.uniq
+  end
+
 end

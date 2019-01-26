@@ -12,7 +12,7 @@ class Round
   end
 
   def current_card
-    deck.cards[@current_card_index]
+    @deck.cards[@current_card_index]
   end
 
   def take_turn(guess)
@@ -55,49 +55,34 @@ class Round
     ((number_correct_by_category(category).to_f / number_of_turns_by_category(category).to_f) * 100).round(1)
   end
 
-  def start
-    #start helper methods: 
-    #"play game method"
-    #game over method
-    puts "Welcome! You're playing with #{@deck.count} cards."
-    puts "-------------------------------------------------"
-    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
-    puts "Question: #{current_card.question}"
-    guess = gets.chomp
-    turn = take_turn(guess)
-    puts turn.feedback
-    puts "-------------------------------------------------"
-    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
-    puts "Question: #{current_card.question}"
-    guess = gets.chomp
-    turn = take_turn(guess)
-    puts turn.feedback
-    puts "-------------------------------------------------"
-    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
-    puts "Question: #{current_card.question}"
-    guess = gets.chomp
-    turn = take_turn(guess)
-    puts turn.feedback
-    puts "-------------------------------------------------"
-    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
-    puts "Question: #{current_card.question}"
-    guess = gets.chomp
-    turn = take_turn(guess)
-    puts turn.feedback
-    puts "-------------------------------------------------"
-    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
-    puts "Question: #{current_card.question}"
-    guess = gets.chomp
-    turn = take_turn(guess)
-    puts turn.feedback
-    #something to recognize that all cards have been used to trigger
-    #game over message
+  def play_game
+    @deck.cards.each do |card|
+      puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+      puts "Question: #{current_card.question}"
+      guess = gets.chomp
+      turn = take_turn(guess)
+      puts turn.feedback
+      puts "-------------------------------------------------"
+    end
+  end
+
+  def game_over
     puts "****** Game over! ******"
     puts "You had #{number_correct} correct guesses out of #{@turns.count} for a total score of #{percent_correct}%."
+    # new method to define cataegories
+    @deck.cards_in_category(category)
 
-    def
-      puts "#{category} : #{percent_correct_by_category(category)}% correct."
+    @deck.cards.each do |card|
+      category = card.category
+      puts "#{category}:  #{percent_correct_by_category(category)}% correct."
+    end
+  end
 
+  def start
+    puts "Welcome! You're playing with #{@deck.count} cards."
+    puts "-------------------------------------------------"
+    play_game
+    game_over
   end
 
 end

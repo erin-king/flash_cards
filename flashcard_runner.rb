@@ -7,7 +7,7 @@ card_1 = Card.new("1 + 1", "2", :Math)
 card_2 = Card.new("2 + 2", "4", :Math)
 card_3 = Card.new("0 + 1", "1", :Math)
 card_4 = Card.new("What is I lowercase?", "i", :Letters)
-card_5 = Card.new("What is N lowercase?", "n", :Letter)
+card_5 = Card.new("What is N lowercase?", "n", :Letters)
 
 cards = [card_1, card_2, card_3, card_4, card_5]
 
@@ -16,12 +16,6 @@ deck_1 = Deck.new(cards)
 round_1 = Round.new(deck_1)
 
 round_1.start
-
-# ****** Game over! ******
-# You had 3 correct guesses out of 4 for a total score of 75%.
-# STEM - 100% correct
-# Turing Staff - 50% correct
-# Pop Culture - 100% correct
 
 # Seen together, the CLI will look something like this when the game is over:
 #
