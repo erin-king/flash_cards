@@ -61,9 +61,7 @@ class RoundTest < Minitest::Test
     assert_equal [new_turn, newer_turn], @round.turns
   end
 
-  def method_name
 
-  end
 
 
 end
