@@ -85,19 +85,24 @@ class RoundTest < Minitest::Test
     assert_equal 1, @round.number_correct_by_category(:Geography)
     assert_equal 1, @round.number_correct_by_category(:STEM)
 
-    newest_turn_wrong_guess = @round.take_turn("North north west")
+    newest_turn = @round.take_turn("North north west")
 
     assert_equal 2, @round.number_correct_by_category(:STEM)
   end
 
+  def test_it_can_calculate_percent_correct
+    new_turn = @round.take_turn("Juneau")
+    newer_turn = @round.take_turn("Mars")
+
+    assert_equal 100.0, @round.percent_correct
+
+    newest_turn_incorrect = @round.take_turn("Incorrect")
+
+    assert_equal 66.7, @round.percent_correct
+  end
+
 end
 
-# pry(main)> round.number_correct_by_category(:Geography)
-# #=> 1
-#
-# pry(main)> round.number_correct_by_category(:STEM)
-# #=> 0
-#
 # pry(main)> round.percent_correct
 # #=> 50.0
 #
