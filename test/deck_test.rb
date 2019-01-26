@@ -40,4 +40,9 @@ class DeckTest < Minitest::Test
     assert_equal [], @deck.cards_in_category("Pop Culture")
   end
 
+  def test_it_can_group_unique_card_categories
+
+    assert_equal [:Geography, :STEM], @deck.card_categories
+  end
+
 end
