@@ -9,7 +9,6 @@ class Round
     @deck = deck
     @turns = []
     @current_card_index = 0
-    # @number_correct = 0
   end
 
   def current_card
@@ -54,6 +53,51 @@ class Round
 
   def percent_correct_by_category(category)
     ((number_correct_by_category(category).to_f / number_of_turns_by_category(category).to_f) * 100).round(1)
+  end
+
+  def start
+    #start helper methods: 
+    #"play game method"
+    #game over method
+    puts "Welcome! You're playing with #{@deck.count} cards."
+    puts "-------------------------------------------------"
+    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+    puts "Question: #{current_card.question}"
+    guess = gets.chomp
+    turn = take_turn(guess)
+    puts turn.feedback
+    puts "-------------------------------------------------"
+    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+    puts "Question: #{current_card.question}"
+    guess = gets.chomp
+    turn = take_turn(guess)
+    puts turn.feedback
+    puts "-------------------------------------------------"
+    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+    puts "Question: #{current_card.question}"
+    guess = gets.chomp
+    turn = take_turn(guess)
+    puts turn.feedback
+    puts "-------------------------------------------------"
+    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+    puts "Question: #{current_card.question}"
+    guess = gets.chomp
+    turn = take_turn(guess)
+    puts turn.feedback
+    puts "-------------------------------------------------"
+    puts "This is card number #{@current_card_index + 1} out of #{@deck.count}."
+    puts "Question: #{current_card.question}"
+    guess = gets.chomp
+    turn = take_turn(guess)
+    puts turn.feedback
+    #something to recognize that all cards have been used to trigger
+    #game over message
+    puts "****** Game over! ******"
+    puts "You had #{number_correct} correct guesses out of #{@turns.count} for a total score of #{percent_correct}%."
+
+    def
+      puts "#{category} : #{percent_correct_by_category(category)}% correct."
+
   end
 
 end

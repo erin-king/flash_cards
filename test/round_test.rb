@@ -122,5 +122,5 @@ class RoundTest < Minitest::Test
     assert_equal 50.0, @round.percent_correct_by_category(:STEM)
     assert_nil @round.current_card
   end
-  
+
 end
