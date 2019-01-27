@@ -1,5 +1,6 @@
 require 'pry'
 require 'csv'
+require './lib/card'
 
 class CardGenerator
   def initialize(filename)
@@ -7,12 +8,21 @@ class CardGenerator
   end
 
   def open_file(filename)
-    cards = CSV.open(filename)
+    CSV.open(filename)
   end
 
   def cards
-    
+    cards_array = []
+    cards = open_file(@filename)
+      cards.each do |row|
+        question = row[0]
+        answer = row[1]
+        category = row[2]
+        cards_array << Card.new(question, answer, category)
+      end
+      cards_array
   end
+
 
 #   contents = CSV.open "event_attendees.csv", headers: true
 # contents.each do |row|

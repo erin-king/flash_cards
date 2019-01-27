@@ -2,6 +2,7 @@ require './lib/card'
 require './lib/turn'
 require './lib/deck'
 require './lib/round'
+require './lib/card_generator'
 
 card_1 = Card.new("1 + 1", "2", :Math)
 card_2 = Card.new("2 + 2", "4", :Math)
